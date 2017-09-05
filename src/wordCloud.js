@@ -14,6 +14,7 @@ WordCloud.appendWords = function () {
   let paragraph = this.previousElementSibling.value
   let wordCollection = paragraph.split(' ')
   let downcasedWords = WordCloud.downcase(wordCollection)
+  WordCloud.postWords (downcasedWords)
   let wordsObj = WordCloud.countWords(downcasedWords)
   let wordCloudObjects = Object.keys(wordsObj).map(function(key) {
     let word = {name: key, count: wordsObj[key]}
@@ -22,6 +23,19 @@ WordCloud.appendWords = function () {
   $( ".word-count p" ).remove()
   return wordCloudObjects.forEach(function (wordCloudObject) {
     $('.word-count').append(wordCloudObject.toHTML ())
+  })
+}
+
+WordCloud.postWords = function (words) {
+  words.forEach(function (word) {
+    $.ajax ({
+      type: 'POST',
+      url: `${API}/api/v1/words`,
+      data: { word: { value: word }}
+    })
+    .then(function () {
+      console.log(`${word} posted successfully`)
+    })
   })
 }
 
