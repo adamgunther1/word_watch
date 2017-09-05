@@ -9,5 +9,12 @@ $(document).ready(function () {
   })
 
   $('button').on('click', WordCloud.appendWords)
+
+  $('textarea').keypress(function(e) {
+    if(e.which == 13) {
+        $(this).blur()
+        $('button').focus().click()
+    }
+  })
 })
 
