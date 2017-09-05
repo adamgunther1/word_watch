@@ -1,10 +1,12 @@
 const $ = require('jquery')
-const WordWatch = require('./wordWatch')
+const TopWord = require('./topWord')
 
 $(document).ready(function () {
-  WordWatch.findAndCountTopWord ()
+  TopWord.findAndCountTopWord ()
   .then(function (wordHTML) {
     $('.top-word h3').append (wordHTML)
   })
+
+  
 })
 
