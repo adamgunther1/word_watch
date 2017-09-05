@@ -19,6 +19,7 @@ WordCloud.appendWords = function () {
     let word = {name: key, count: wordsObj[key]}
     return new WordCloud (word)
   })
+  $( ".word-count p" ).remove()
   return wordCloudObjects.forEach(function (wordCloudObject) {
     $('.word-count').append(wordCloudObject.toHTML ())
   })
