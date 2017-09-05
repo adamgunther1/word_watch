@@ -1,5 +1,6 @@
 const $ = require('jquery')
 const TopWord = require('./topWord')
+const WordCloud = require('./wordCloud')
 
 $(document).ready(function () {
   TopWord.findAndCountTopWord ()
@@ -7,6 +8,6 @@ $(document).ready(function () {
     $('.top-word h3').append (wordHTML)
   })
 
-  
+  $('button').on('click', WordCloud.appendWords)
 })
 
