@@ -15,9 +15,7 @@ class TopWord {
   static findAndCountTopWord () {
     return this.getTopWord ()
     .then( function (word) {
-      let name = Object.keys(word.word)[0]
-      let count = Object.values(word.word)[0]
-      let wordObj = { name, count}
+      let wordObj = {name: Object.keys(word.word)[0], count: Object.values(word.word)[0]}
       return new TopWord (wordObj)
     })
     .then(function (topWord) {

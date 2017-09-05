@@ -13,18 +13,26 @@ class WordCloud {
   }
 
   static appendWords () {
-    let paragraph = this.previousElementSibling.value
-    let wordCollection = paragraph.split(' ')
-    let downcasedWords = WordCloud.downcase(wordCollection)
+    let downcasedWords = WordCloud.formatWords (this)
     WordCloud.postWords (downcasedWords)
     let wordsObj = WordCloud.countWords(downcasedWords)
-    let wordCloudObjects = Object.keys(wordsObj).map(function(key) {
-      let word = {name: key, count: wordsObj[key]}
-      return new WordCloud (word)
-    })
+    let wordCloudObjects = WordCloud.objectifyWords (wordsObj)
     $( ".word-count p" ).remove()
     return wordCloudObjects.forEach(function (wordCloudObject) {
       $('.word-count').append(wordCloudObject.toHTML ())
+    })
+  }
+  
+  static formatWords (paragraph) {
+    let words = paragraph.previousElementSibling.value
+    let wordCollection = words.split(' ')
+    return WordCloud.downcase(wordCollection)
+  }
+
+  static objectifyWords (wordsObj) {
+    return Object.keys(wordsObj).map(function(key) {
+      let word = {name: key, count: wordsObj[key]}
+      return new WordCloud (word)
     })
   }
 
