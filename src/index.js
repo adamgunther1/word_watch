@@ -8,7 +8,7 @@ $(document).ready(function () {
     $('.top-word h3').append (wordHTML)
   })
 
-  $('button').on('click', WordCloud.appendWords)
+  $('button').on('click', WordCloud.cloudifyWords)
 
   $('textarea').keypress(function(e) {
     if(e.which == 13) {

@@ -12,14 +12,18 @@ class WordCloud {
     return `<p style="font-size: ${this.count}em;">${this.name}</p>`
   }
 
-  static appendWords () {
+  static cloudifyWords () {
     let downcasedWords = WordCloud.formatWords (this)
     WordCloud.postWords (downcasedWords)
     let wordsObj = WordCloud.countWords(downcasedWords)
     let wordCloudObjects = WordCloud.objectifyWords (wordsObj)
+    return WordCloud.appendWords (wordCloudObjects)
+  }
+  
+  static appendWords (wordObjects) {
     $( ".word-count p" ).remove()
-    return wordCloudObjects.forEach(function (wordCloudObject) {
-      $('.word-count').append(wordCloudObject.toHTML ())
+    return wordObjects.forEach(function (wordObj) {
+      $('.word-count').append(wordObj.toHTML ())
     })
   }
   
