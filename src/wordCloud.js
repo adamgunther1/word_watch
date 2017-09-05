@@ -51,7 +51,7 @@ class WordCloud {
 
   static downcase (words) {
     return words.map(function (word) {
-      return word.toLowerCase()
+      return word.replace("'", "").toLowerCase()
     })
   }
 
